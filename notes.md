@@ -8,10 +8,17 @@
     - create a list item everytime the add button has been clicked 
         - setup backend, create backend folder, do express generate server, import mongoose to connect to database
         - setup database, config>db.tsx
-        - create an api that posts into the database
+            - create database -> create collection -> insert document(json)
+            - create a higher order function that connects to database
+            - store them in a try catch block for error
+            - connect to server of database -> grab the database we're using
+            - call the callback function(operation) to start executing - this operation is modifying the database and modifying the database is an async
+            - close the connection to database
+        - create an api that posts into the database, link the higher order function for connecting to the database with this operations
         - push new list item into the database by creating a post request
         - show this list of items by fetching the whole list in database
-            - create an api that grabs the data from the database, then call this api
+            - create an api that grabs the data from the database, return parsed json into js object
+            - create a post api that inserts todo list into the listItem database, itemList collection and item property that contains an array
     - add a remove button in a todo list that would also remove it from the local storage 
 - create a signup and login modal 
     - store the data of user in a jwt
