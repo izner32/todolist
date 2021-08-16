@@ -1,0 +1,13 @@
+- setup next,bootstrap and ts 
+- create component folder, component-for-all(for footer,header,etc.)
+- create layout.tsx
+    - store the components from component-for-all in this layout page
+- create homepage.tsx 
+    - add an input field and a submit button
+    - if the button has been clicked store the data in a local storage so it won't be lost even in a refresh
+    - add a remove button in a todo list
+- create a signup and login modal 
+    - store the data of user in a jwt
+    - only with those valid jwt can access the homepage
+    - add a logout button
+
