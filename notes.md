@@ -6,11 +6,15 @@
     - add an input field and a submit button
     - if the button has been clicked store the data in a local storage so it won't be lost even in a refresh
     - create a list item everytime the add button has been clicked 
-        - push new list item into the database
+        - setup backend, create backend folder, do express generate server, import mongoose to connect to database
+        - setup database, config>db.tsx
+        - create an api that posts into the database
+        - push new list item into the database by creating a post request
         - show this list of items by fetching the whole list in database
+            - create an api that grabs the data from the database, then call this api
     - add a remove button in a todo list that would also remove it from the local storage 
 - create a signup and login modal 
     - store the data of user in a jwt
     - only with those valid jwt can access the homepage
-    - add a logout button
+    - add a logout button that also clears the jwt 
 
