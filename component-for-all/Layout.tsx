@@ -1,7 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
-import Nav from '../component-for-all/Nav'
-import Footer from '../component-for-all/Footer'
+import Nav from './Nav'
+import Footer from './Footer'
 
 function Layout({children}) {
     return (

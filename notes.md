@@ -5,7 +5,10 @@
 - create homepage.tsx 
     - add an input field and a submit button
     - if the button has been clicked store the data in a local storage so it won't be lost even in a refresh
-    - add a remove button in a todo list
+    - create a list item everytime the add button has been clicked 
+        - push new list item into the database
+        - show this list of items by fetching the whole list in database
+    - add a remove button in a todo list that would also remove it from the local storage 
 - create a signup and login modal 
     - store the data of user in a jwt
     - only with those valid jwt can access the homepage

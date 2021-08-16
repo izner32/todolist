@@ -1,17 +1,13 @@
 import Image from 'next/image'
-import Layout from '../component/Layout'
+import Layout from '../component-for-all/Layout'
 import { useState } from "react";
 
 
 export default function Home() {
   const [todoValue, setTodoValue] = useState("");
+  const [buttonClicked, setButtonClicked] = useState(false);
 
-  function addButtonClicked () {
-    /* 
-    1. if button has been clicked, return a list jsx containing the conent of the todo list
-    */
-    console.log(`button has been clicked`);
-  }
+  
 
   return (
     <div className="">
@@ -23,21 +19,29 @@ export default function Home() {
                 <input
                   placeholder ="Enter to do"
                   value = {todoValue}
-                  onChange = { e => setTodoValue(e.target.value) }
+                  onChange = { e => {
+                    setTodoValue(e.target.value); 
+                  }}
                 ></input>
                 <button
-                  onClick = {addButtonClicked()}
+                  onClick = { () => {
+                    setButtonClicked(true); 
+                  } }
                 >Add</button>
               </div>
               <div className="">
                 <p className="text-center mt-5">Todo List</p>
                 <ul className="list-unstyled d-grid w-85">
-                  <div className="d-flex">
-                  <li className="w-75">list 1</li><button className="">Remove</button>
+                  {/* sample on how it must look like */}
+                  <div className="d-flex justify-content-between">
+                    <li className="">list 1</li><button>remove</button>
                   </div>
-                  <div className="d-flex">
-                  <li className="w-75">list 2</li><button>Remove</button>
+                  <div className="d-flex justify-content-between">
+                    <li className="">list 1</li><button>remove</button>
                   </div>
+                  {/* 
+                  show list of items here 
+                  */}
                 </ul>
               </div>
             </div>
