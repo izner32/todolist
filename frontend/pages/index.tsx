@@ -24,6 +24,7 @@ export default function Home() {
                   }}
                 ></input>
                 <button
+                  className ="btn btn-dark ms-2"
                   onClick = { () => {
                     setButtonClicked(true); 
                   } }
@@ -33,11 +34,11 @@ export default function Home() {
                 <p className="text-center mt-5">Todo List</p>
                 <ul className="list-unstyled d-grid w-85">
                   {/* sample on how it must look like */}
-                  <div className="d-flex justify-content-between">
-                    <li className="">list 1</li><button>remove</button>
+                  <div className="bg-light d-flex justify-content-between align-items-center mb-3">
+                    <li className="ms-2">list 1</li><button className ="btn btn-dark">remove</button>
                   </div>
-                  <div className="d-flex justify-content-between">
-                    <li className="">list 1</li><button>remove</button>
+                  <div className="bg-light d-flex justify-content-between align-items-center mb-3">
+                    <li className="ms-2">list 1</li><button className ="btn btn-dark">remove</button>
                   </div>
                   {/* 
                   show list of items here 
