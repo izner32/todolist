@@ -19,7 +19,9 @@
         - show this list of items by fetching the whole list in database
             - create an api that grabs the data from the database, return parsed json into js object
             - create a post api that inserts todo list into the listItem database, itemList collection and item property that contains an array
-    - add a remove button in a todo list that would also remove it from the local storage 
+                - query for updated list -> return updated list
+            - create delete api that 
+                - add a remove button in a todo list that would also remove it from the local storage 
 - create a signup and login modal 
     - store the data of user in a jwt
     - only with those valid jwt can access the homepage
