@@ -2,6 +2,8 @@ import Image from 'next/image'
 import Layout from '../component-for-all/Layout'
 import { useState, useEffect } from "react";
 import axios from "axios";
+import ItemList from '../component/ItemList';
+
 
 
 export default function Home() {
@@ -25,15 +27,6 @@ export default function Home() {
     // print if post api was a success
     console.log(response); // return the response which is a console log
 
-    // change the value of state so useEffect would work thus updating the displayList
-    setButtonClicked(!buttonClicked);
-  }
-
-  // fetch delete api request that lets us delete a data to the database
-  const onRemoveButtonClicked = () => {
-
-    // fetch the delete api
-  
     // change the value of state so useEffect would work thus updating the displayList
     setButtonClicked(!buttonClicked);
   }
@@ -69,9 +62,9 @@ export default function Home() {
                   <div className="bg-light d-flex justify-content-between align-items-center mb-3">
                     <li className="ms-2">list 1</li><button className ="btn btn-dark">remove</button>
                   </div>
-                  {/* 
-                  displayTodoItems();
-                  */}
+                  
+                    <ItemList buttonClicked = {buttonClicked} setButtonClicked = {setButtonClicked}/>
+
                 </ul>
               </div>
             </div>

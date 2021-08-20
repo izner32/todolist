@@ -4,6 +4,7 @@
 */
 import express from "express";
 import connectDB from "./config/db.js";
+import cors from "cors";
 
 const app = express(); // express is an object that has multiple methods
 const PORT = 4000;
@@ -14,6 +15,13 @@ app.listen(PORT, () => {
 
 // to be able to send in thunder client/postman 
 app.use(express.json());
+
+// to be able to use cors at every http request
+app.use(
+    cors({
+        origin: "*"
+    })
+)
 
 // this api grabs all of the item list
 app.get("/api/item-list", (req,res) => {
@@ -53,7 +61,6 @@ app.delete("/api/item-list", (req,res) => {
     - delete matched data
     - return update list
     */
-
 
     connectDB( async (db) => {
 
