@@ -2,23 +2,27 @@
 - install then import express
 - connect to port 
 */
-const express = require("express");
-import { connectDB } from "./config/db.mjs";
+import express from "express";
+import connectDB from "./config/db.js";
 
 const app = express(); // express is an object that has multiple methods
-const PORT = 3000;
+const PORT = 4000;
 
 app.listen(PORT, () => {
     console.log(`listening to port:${PORT}`);
 });
+
+// to be able to send in thunder client/postman 
+app.use(express.json());
 
 // this api grabs all of the item list
 app.get("/api/item-list", (req,res) => {
     connectDB( async (db) => {
 
         //  db.itemList.find({},{"item":1,"_id":0}) - this means look for all document, only show the item hide the id
-        const itemInfo = await db.collection("itemList").find({},{"item":1,"_id":0});
-        res.status(200).json(itemInfo); // send back this jsoned info
+        const itemInfo = await db.collection("itemList").findOne({});
+        // const itemInfo = await db.collection("itemList").find({},{"item":1,"_id":0});
+        res.status(200).json(itemInfo.item); // send back this jsoned info, only return the item property, exclude the id
 
     }, res);
 });
@@ -31,15 +35,13 @@ app.post("/api/item-list", (req,res) => {
     connectDB( async (db) => {
 
         // insert to do item in an array 
-        const insertItemInfo = await db.collection("itemList").updateOne({}, 
-            { $push: 
-                { "item":todoItem } 
+        const insertItemInfo = await db.collection("itemList").updateOne({}, //{} means on all object 
+            { $push: // adding this item into the array
+                { "item":todoItem } // item is the name of the array, append todoItem into that array
             });
-
-        // query for the updated todo list then return it
-        const itemInfo = await db.collection("itemList").find({},{"item":1, "_id":0 });
-        res.status(200).json(itemInfo); // send back this json info
-
+        
+        // return response
+        res.status(200).json(`todo item inserted`); 
     }, res);
 });
 

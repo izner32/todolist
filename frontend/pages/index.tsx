@@ -1,13 +1,42 @@
 import Image from 'next/image'
 import Layout from '../component-for-all/Layout'
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 
 export default function Home() {
   const [todoValue, setTodoValue] = useState("");
   const [buttonClicked, setButtonClicked] = useState(false);
 
+  // fetch post api request that lets us add to the database
+  const onAddButtonClicked = async () => {
+
+    // fetch the post api, send the todoValue which contains the content of the input field
+    const response = await fetch(`http://localhost:4000/api/item-list`,{
+      method: "post",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        todoItem: todoValue 
+      })
+    });
+    
+    // print if post api was a success
+    console.log(response); // return the response which is a console log
+
+    // change the value of state so useEffect would work thus updating the displayList
+    setButtonClicked(!buttonClicked);
+  }
+
+  // fetch delete api request that lets us delete a data to the database
+  const onRemoveButtonClicked = () => {
+
+    // fetch the delete api
   
+    // change the value of state so useEffect would work thus updating the displayList
+    setButtonClicked(!buttonClicked);
+  }
 
   return (
     <div className="">
@@ -26,7 +55,7 @@ export default function Home() {
                 <button
                   className ="btn btn-dark ms-2"
                   onClick = { () => {
-                    setButtonClicked(true); 
+                    onAddButtonClicked() 
                   } }
                 >Add</button>
               </div>
@@ -41,7 +70,7 @@ export default function Home() {
                     <li className="ms-2">list 1</li><button className ="btn btn-dark">remove</button>
                   </div>
                   {/* 
-                  show list of items here 
+                  displayTodoItems();
                   */}
                 </ul>
               </div>
