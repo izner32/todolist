@@ -1,13 +1,37 @@
 import Image from 'next/image'
 import Layout from '../component-for-all/Layout'
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import ItemList from '../component/ItemList';
+
 
 
 export default function Home() {
   const [todoValue, setTodoValue] = useState("");
   const [buttonClicked, setButtonClicked] = useState(false);
 
-  
+  // fetch post api request that lets us add to the database
+  const onAddButtonClicked = async () => {
+
+    // fetch the post api, send the todoValue which contains the content of the input field
+    const res = await fetch(`http://localhost:4000/api/item-list`,{
+      method: "post",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        todoItem: todoValue 
+      })
+    });
+
+    const data = await res.json();
+    
+    // print if post api was a success
+    console.log(data); // return the response which is a console log
+
+    // change the value of state so useEffect would work thus updating the displayList
+    setButtonClicked(!buttonClicked);
+  }
 
   return (
     <div className="">
@@ -26,7 +50,7 @@ export default function Home() {
                 <button
                   className ="btn btn-dark ms-2"
                   onClick = { () => {
-                    setButtonClicked(true); 
+                    onAddButtonClicked() 
                   } }
                 >Add</button>
               </div>
@@ -34,15 +58,15 @@ export default function Home() {
                 <p className="text-center mt-5">Todo List</p>
                 <ul className="list-unstyled d-grid w-85">
                   {/* sample on how it must look like */}
-                  <div className="bg-light d-flex justify-content-between align-items-center mb-3">
+                  {/* <div className="bg-light d-flex justify-content-between align-items-center mb-3">
                     <li className="ms-2">list 1</li><button className ="btn btn-dark">remove</button>
                   </div>
                   <div className="bg-light d-flex justify-content-between align-items-center mb-3">
                     <li className="ms-2">list 1</li><button className ="btn btn-dark">remove</button>
-                  </div>
-                  {/* 
-                  show list of items here 
-                  */}
+                  </div> */}
+                  
+                    <ItemList buttonClicked = {buttonClicked} setButtonClicked = {setButtonClicked}/>
+
                 </ul>
               </div>
             </div>
